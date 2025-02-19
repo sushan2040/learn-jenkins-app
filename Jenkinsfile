@@ -1,10 +1,7 @@
 pipeline {
     agent {
-                docker {
-                    image 'node:18-alpine'  // Docker image to use
-                    reuseNode true  // Reuse the same workspace across stages (optional)
-                }
-            }
+        docker { image 'node:22.14.0-alpine3.21' }
+    }
     stages {
         stage('Build') {
            
