@@ -7,6 +7,8 @@ pipeline {
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
+                    args '-v /c/ProgramData/Jenkins/.jenkins/workspace/learn-jenkins-app:/workspace
+'
                 }
             }
             steps {
