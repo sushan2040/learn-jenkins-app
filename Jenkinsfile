@@ -41,11 +41,10 @@ pipeline {
             }
                 steps{
                     sh '''
-                    npm install netlify-cli
-                    node_modules/.bin/netlify netlify --version
+                     netlify --version
                     echo deploying to producttion site  id:$NETLIFY_SITE_ID
-                    node_modules/.bin/netlify status
-                    node_modules/.bin/netlify deploy --dir=build
+                    netlify status
+                    netlify deploy --dir=build
                     echo 'added to check git polling'
                     '''
                 script{
@@ -57,7 +56,7 @@ pipeline {
              stage('staging E2E') {
                     agent {
                         docker {
-                            image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                            image 'my-playwright'
                             reuseNode true
                         }
                     }
@@ -94,11 +93,10 @@ pipeline {
             }
                 steps{
                     sh '''
-                    npm install netlify-cli
-                    node_modules/.bin/netlify netlify --version
+                     netlify --version
                     echo deploying to producttion site  id:$NETLIFY_SITE_ID
-                    node_modules/.bin/netlify status
-                    node_modules/.bin/netlify deploy --dir=build --prod
+                    netlify status
+                    netlify deploy --dir=build --prod
                     echo 'added to check git polling'
                     '''
                 }
@@ -106,7 +104,7 @@ pipeline {
              stage('prod E2E') {
                     agent {
                         docker {
-                            image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                            image 'my-playwright'
                             reuseNode true
                         }
                     }
