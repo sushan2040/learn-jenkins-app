@@ -45,6 +45,11 @@ pipeline {
                     '''
                 }
             }
+         stage('Approval'){
+            steps{
+                input message: 'Do you want to deploy to production?', ok: 'Yes I want to deploy'
+            }
+         }   
         stage('Deploy prod'){
             agent {
                 docker {
